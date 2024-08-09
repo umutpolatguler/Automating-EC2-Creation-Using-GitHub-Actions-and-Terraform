@@ -1,0 +1,29 @@
+name: TF Deploy EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    name: TF Apply
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup TF
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_wrapper: false
+
+    - name: TF Init
+      run: terraform init
+
+    - name: TF Apply
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      run: terraform apply -auto-approve
