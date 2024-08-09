@@ -1,4 +1,4 @@
-a
+
 # Automating EC2 Creation Using GitHub Actions and Terraform
 
 A step-by-step guide to automate EC2 creation with GitHub Actions and Terraform and ensure that when you change ECS specifications on GitHub, these changes are reflected on AWS via GitHub Actions.
